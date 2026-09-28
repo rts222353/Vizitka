@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Александр Водорацкий — Цифровая визитка</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #f5f5f5;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      padding: 24px;
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+    }
+    .avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #6e48aa 0%, #9d50bb 100%);
+      color: #fff;
+      font-size: 42px;
+      font-weight: 800;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    h1 {
+      margin: 0 0 4px;
+      font-size: 24px;
+      line-height: 1.2;
+      font-weight: 700;
+    }
+    .role {
+      color: #888;
+      font-size: 14px;
+      margin: 0 0 24px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      border-radius: 14px;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 600;
+      color: #fff;
+      transition: transform 0.1s, opacity 0.2s, background 0.2s;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+    .btn:active { transform: scale(0.98); }
+    
+    /* Цвета кнопок как на скриншоте */
+    .btn-call-1 { background: #2ecc71; } /* Tele2 */
+    .btn-call-2 { background: #3498db; } /* YOTA */
+    .btn-tg { background: #2aa0da; }
+    .btn-vk { background: #4a76a8; }
+    .btn-email { background: #e74c3c; }
+    .btn-max { background: #f39c12; }
+    .btn-wifi-24 { background: #2ecc71; }
+    .btn-wifi-5 { background: #3498db; }
+    .btn-save { background: #333; }
+
+    .icon-text {
+      margin-right: 12px;
+      font-size: 20px;
+      line-height: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="avatar">А</div>
+    <h1>Александр Водорацкий</h1>
+    <p class="role">Цифровая визитка</p>
+
+    <div class="buttons">
+      <!-- Позвонить Tele2 -->
+      <a href="tel:+79006793951" class="btn btn-call-1">
+        <span class="icon-text">📞</span> Позвонить Tele2
+      </a>
+
+      <!-- Позвонить YOTA -->
+      <a href="tel:+79994707984" class="btn btn-call-2">
+        <span class="icon-text">📞</span> Позвонить YOTA
+      </a>
+
+      <!-- Telegram -->
+      <a href="https://t.me/alexDobrov22" class="btn btn-tg">
+        <span class="icon-text">✈️</span> Telegram
+      </a>
+
+      <!-- ВКонтакте -->
+      <a href="https://vk.ru/dobrovxdd" class="btn btn-vk">
+        <span class="icon-text">VK</span> ВКонтакте
+      </a>
+
+      <!-- Email -->
+      <a href="mailto:fox22165@gmail.com" class="btn btn-email">
+        <span class="icon-text">✉️</span> GMAIL.COM
+      </a>
+
+      <!-- Max -->
+      <a href="#" class="btn btn-max">
+        <span class="icon-text" style="font-weight:900; font-size:22px;">М</span> Max
+      </a>
+
+      <!-- Wi-Fi 2.4 ГГц -->
+      <a href="#" class="btn btn-wifi-24">
+        <span class="icon-text">◌◌◌</span> Wi-Fi 2.4 ГГц
+      </a>
+
+      <!-- Wi-Fi 5 ГГц -->
+      <a href="#" class="btn btn-wifi-5">
+        <span class="icon-text">◌◌◌</span> Wi-Fi 5 ГГц
+      </a>
+
+      <!-- Сохранить контакт (vCard) -->
+      <button onclick="downloadVCard()" class="btn btn-save">
+        <span class="icon-text">👤</span> Сохранить контакт
+      </button>
+    </div>
+  </div>
+
+  <script>
+    function downloadVCard() {
+      const vCardContent = `BEGIN:VCARD
+VERSION:3.0
+FN:Александр Водорацкий
+TEL;TYPE=CELL;TYPE=VOICE:+79006793951
+TEL;TYPE=CELL;TYPE=VOICE:+79994707984
+EMAIL;TYPE=INTERNET:fox22165@gmail.com
+URL:https://t.me/alexDobrov22
+URL:https://vk.ru/dobrovxdd
+END:VCARD`;
+      
+      const blob = new Blob([vCardContent], {type: "text/vcard"});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.style.display = "none";
+      a.href = url;
+      a.download = "Alexander_Vodoratsky.vcf";
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+    }
+  </script>
+</body>
+</html>
